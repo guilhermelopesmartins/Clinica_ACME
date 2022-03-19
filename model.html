@@ -14,7 +14,7 @@
     <section style="margin: 15px;">
         <div>
             <p>
-                <strong>Preencha as informações do cliente:</strong>
+                <strong>Preencha as informações do paciente:</strong>
             </p>
             <p>
                 Nome Completo: 
@@ -34,7 +34,7 @@
                 <input type="text" name="txtAdress" id="txtAdress", size="70", maxlength="100"></p>
             <p>
                 CPF: 
-                <input type="number", name="txtCPF", id="txtCPF", maxlength="11">
+                <input type="text", name="txtCPF", id="txtCPF", maxlength="11">
                 Status: 
                 <select name="status" id="status">
                     <option value="ativo">Ativo</option>
@@ -47,8 +47,17 @@
         </div>
     </section>
     <section style="margin: 15px;">
-        <div id="clientes">
-            Olá
+        <div id="patient">
+            <table id="table", border="1px">
+                <tr>
+                    <td>Nome</td>
+                    <td>Data de Nascimento</td>
+                    <td>Sexo</td>
+                    <td>Endereço</td>
+                    <td>CPF</td>
+                    <td>Status</td>
+                </tr>
+            </table>
         </div>
     </section>
     <section id="Pesquisa">
