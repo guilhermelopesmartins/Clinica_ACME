@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastros ACME</title>
+    <link rel="stylesheet" href="css\style.css">
+</head>
+<body>
+    <header>
+        <h1>Cadastros ACME</h1>
+    </header>
+    <section style="margin: 15px;">
+        <div>
+            <p>
+                <strong>Preencha as informações do paciente:</strong>
+            </p>
+            <p>
+                Nome Completo: 
+                <input type="text" size="50" id="txtName">
+            </p>
+            <p>
+                Data de Nascimento: 
+                <input type="date" name="date" id="date"> 
+                Sexo: 
+                <input type="radio" name="radioSex" id="Masculino" value="Masculino", checked>
+                <label for="Masculino">Masculino</label>
+                <input type="radio" name="radioSex" id="Feminino" value="Feminino">
+                <label for="Feminino">Feminino</label>
+            </p>
+            <p>
+                Endereço(opcional): 
+                <input type="text" name="txtAdress" id="txtAdress" size="70" maxlength="100"></p>
+            <p>
+                CPF: 
+                <input type="number" name="txtCPF" id="txtCPF">
+                Status: 
+                <select name="status" id="status">
+                    <option value="Ativo">Ativo</option>
+                    <option value="Inativo">Inativo</option>
+                </select>
+            </p>
+            <p>
+                <button id="btnSave" onclick="Save()">Cadastrar</button>
+            </p>
+        </div>
+    </section>
+    <section style="margin-top: 15px;">
+        <table>
+            <caption>
+                Cadastro dos Pacientes
+            </caption>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Data de Nascimento</th>
+                    <th>Sexo</th>
+                    <th>Endereço</th>
+                    <th>CPF</th>
+                    <th>Status</th>  
+                    <th>Ações</th>                  
+                </tr>
+            </thead>
+            <tbody id="table" >
+                <!--Aqui é atualizado o cadastro dos pacientes automaticamente-->
+            </tbody>
+        </table>
+        <p style="text-align: right; font-size: 17px;">
+            (Para inativar um paciente para clicar em cima do seu status)
+        </p>
+        <h3>
+            Pesquise o paciente por seu nome:
+        </h3>
+        <p>
+            <button onclick="SearchByName()">Pesquisar</button>
+            <input type="text" name="txtSearch" id="txtSearch" size="50">
+        </p>
+    </section>
+
+    <script src="js\script.js"></script>
+</body>
+</html>
