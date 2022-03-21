@@ -12,13 +12,12 @@ section{
     background: white;
     border-radius: 5px;
     padding: 15px;
-    width: 800px;
     margin: 15px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.295);
 }
 
 button {
-    background-color: #316df0; /* Green */
+    background-color: #2050f0;
     border: none;
     color: white;
     padding: 10px 27px;
@@ -36,23 +35,21 @@ input, select {
 table {
     table-layout: fixed;
     width: 100%;
-    border-radius: 10px;
-    border: 3px solid rgb(97, 97, 97);
-    background-color: antiquewhite;
+    border-collapse: collapse;
+    border: 3px solid rgb(116, 116, 116);
+    background-color: rgb(211, 252, 253);
 }
 
 
 td{
     text-align: center;
-    
 }
 
 caption {
     background-color: rgb(116, 116, 116);
     color: white;
     font-size: 30px;
-    border-radius: 20px;
-    margin-bottom: 10px;
+    
 }
 
 footer{

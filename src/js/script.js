@@ -1,6 +1,4 @@
-window.onload = UpdateTable;
-
-let table = document.getElementById('table')
+window.onload = UpdateTable; // Atualiza a tabela ao atualizar página
 
 let editable = null // Essa variavel vai mostrar se os dados irão ser editados ou cadastrados
 
@@ -18,21 +16,32 @@ function Save(){
         window.alert('Digite o CPF para continuar!')
         return
     }
-
+    
     if(editable == null){
-        // Verifica se o CPF é repetido ao cadastrar
+    // Verifica se o CPF é repetido ao cadastrar
+    for (let index = 0; index < localStorage.length; index++) {
+        let txtPatient = localStorage.getItem(index)
+        let patient = JSON.parse(txtPatient)
+            
+        if (patient.CPF == document.getElementById('txtCPF').value) {
+            window.alert('Esse CPF já foi cadastrado, por favor revise os dados inseridos...')
+            return
+        }
+    }
+        Register()
+    }else{
+        // Verifica se o CPF é repetido ao Editar
         for (let index = 0; index < localStorage.length; index++) {
             let txtPatient = localStorage.getItem(index)
             let patient = JSON.parse(txtPatient)
-            
-            if (patient.CPF == document.getElementById('txtCPF').value) {
+
+            if (index != editable && patient.CPF == document.getElementById('txtCPF').value){
                 window.alert('Esse CPF já foi cadastrado, por favor revise os dados inseridos...')
                 return
             }
         }
-        Register()
-    }else{
         Edit(editable)
+   
     }
 
     // Limpa os campos sempre que um cadastro ou alteração é feita
@@ -78,6 +87,8 @@ UpdateTable()
 
 function UpdateTable(){
     
+    let table = document.getElementById('table')
+
     // Limpa a tabela excluindo todas a linhas inseridas automaticamente
     while (table.hasChildNodes()) {
         table.removeChild(table.lastChild);
@@ -136,10 +147,16 @@ function PreEdit(n){
     // Inseri os valores do paciente nos campos
     document.getElementById('txtName').value = patient.nome
     document.getElementById('date').value = patient.data
-    //document.querySelector('input[name="radioSex"]:checked').value = `input[id="${patient.sexo}"]:checked`
     document.getElementById('txtAdress').value = patient.endereco
     document.getElementById('txtCPF').value = patient.CPF
-    //document.getElementById('status').selectedOptions[0].value = patient.stats
+    if (patient.stats == 'Ativo')
+        document.getElementById('status').getElementsByTagName('option')[0].selected = 'selected'
+    else
+        document.getElementById('status').getElementsByTagName('option')[1].selected = 'selected'
+    if (patient.sexo == 'Masculino')
+        document.getElementById('Masculino').checked = true
+    else
+        document.getElementById('Feminino').checked = true
 }
 
 function Edit(n){
@@ -165,8 +182,10 @@ function Edit(n){
     window.alert('Editado com sucesso!')
 }
 
+// Faz um pesquisa pelo nome digitado (completo ou inclompleto)
 function SearchByName(){
     let search = document.getElementById('txtSearch').value
+    let table = document.getElementById('table')
     
     while (table.hasChildNodes()) {
         table.removeChild(table.lastChild);
@@ -203,6 +222,12 @@ function SearchByName(){
             status.innerText = patient.stats
             status.setAttribute('onclick', `Inactivate(${index})`)
             tr.appendChild(status)
+
+            // Criando interação de editar com emojis
+            let editImg = document.createElement('text')
+            editImg.innerHTML = '\u{270D} EDITAR'
+            editImg.setAttribute('onclick', `PreEdit(${index})`)
+            tr.appendChild(editImg)
         }
     }
 }
