@@ -32,6 +32,10 @@ input, select {
     height: 25px;
 }
 
+thead{
+    background-color: rgb(173, 173, 173);
+}
+
 table {
     table-layout: fixed;
     width: 100%;

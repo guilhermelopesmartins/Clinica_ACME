@@ -13,16 +13,16 @@
     </header>
     <section>
         <div>
-            <p>
-                <strong>Preencha as informações do paciente:</strong>
-            </p>
+            <h3>
+                Preencha as informações do paciente:
+            </h3>
             <p>
                 Nome Completo: 
                 <input type="text" size="50" id="txtName">
             </p>
             <p>
                 Data de Nascimento: 
-                <input type="date" name="date" id="date"> 
+                <input type="date" name="date" id="date" min="1900-01-01" max="2000-01-01"> 
                 Sexo: 
                 <input type="radio" name="radioSex" id="Masculino" value="Masculino", checked>
                 <label for="Masculino">Masculino</label>
@@ -34,15 +34,16 @@
                 <input type="text" name="txtAdress" id="txtAdress" size="70" maxlength="100"></p>
             <p>
                 CPF: 
-                <input type="number" name="txtCPF" id="txtCPF">
+                <input type="text" name="txtCPF" id="txtCPF" maxlength="11" placeholder="Somente Números" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                 Status: 
                 <select name="status" id="status">
                     <option value="Ativo">Ativo</option>
-                    <option value="Inativo">Inativo</option>
+                    <option value="Inativo", disabled>Inativo</option>
                 </select>
             </p>
             <p>
                 <button id="btnSave" onclick="Save()">Cadastrar</button>
+                <button id="btnCancel" onclick="CleanAll()" style="display: none;">Cancelar</button>
             </p>
         </div>
     </section>
@@ -62,19 +63,19 @@
                     <th>Ações</th>                  
                 </tr>
             </thead>
+            <h3>
+                Pesquise o paciente por seu nome:
+            </h3>
+            <p>
+                <button onclick="SearchByName()">Pesquisar</button>
+                <input type="text" name="txtSearch" id="txtSearch" size="50">
+            </p>
             <tbody id="table" >
                 <!--Aqui é atualizado o cadastro dos pacientes automaticamente-->
             </tbody>
         </table>
         <p style="text-align: right; font-size: 17px;">
-            (Para inativar um paciente para clicar em cima do seu status)
-        </p>
-        <h3>
-            Pesquise o paciente por seu nome:
-        </h3>
-        <p>
-            <button onclick="SearchByName()">Pesquisar</button>
-            <input type="text" name="txtSearch" id="txtSearch" size="50">
+            (Para inativar um paciente basta clicar em cima do seu status)
         </p>
     </section>
 
