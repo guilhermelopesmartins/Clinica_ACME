@@ -38,15 +38,33 @@ function Save(){
     CleanAll()
 }
 
+// Formata a data mesmo padrão recebido pelo input date
+function FormatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
 
 // Verificações sobre o preenchimento de dados
 function GetValidation (){
     if(document.getElementById('txtName').value.trim() == ''){
-        window.alert('Digite o nome para continuar!' + String.prototype.trim(document.getElementById('txtName').value)+ 'assim')
+        window.alert('Digite o nome para continuar!')
         return false
     }   
     if(document.getElementById('date').value == ''){
         window.alert('Digite a data para continuar!')
+        return false
+    }
+    if (document.getElementById('date').value > FormatDate(new Date().toDateString())){
+        window.alert('Data inválida')
         return false
     }
     if(document.getElementById('txtCPF').value == '' || document.getElementById('txtCPF').value.length < 11){
